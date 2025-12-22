@@ -33,7 +33,29 @@ resource "aws_route_table_association" "private" {
 resource "aws_security_group" "lambda" {
   name   = "lambda-sg"
   vpc_id = aws_vpc.this.id
+  # Outbound rules
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
+  tags = var.tags
+}
+
+resource "aws_security_group" "sqs_endpoint" {
+  name   = "sqs-endpoint-sg"
+  vpc_id = aws_vpc.this.id
+  # inbound rules
+  ingress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.lambda.id]
+  }
+  
+  # Outbound rules
   egress {
     from_port   = 0
     to_port     = 0

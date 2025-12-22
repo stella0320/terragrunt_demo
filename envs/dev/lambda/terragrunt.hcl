@@ -35,6 +35,16 @@ dependency "s3" {
   mock_outputs_allowed_terraform_commands = ["init", "plan"]
 }
 
+dependency "sqs" {
+  config_path = "../sqs"
+  mock_outputs = {
+    sqs_queue_name = "mock_quene_name",
+    sqs_queue_url = "mock_queue_url"
+  }
+  
+  mock_outputs_allowed_terraform_commands = ["init", "plan"]
+}
+
 # -------------------------------------------------
 # Inputs
 # -------------------------------------------------
@@ -50,6 +60,8 @@ inputs = {
   # 要驗證的 S3 bucket
   bucket_name = dependency.s3.outputs.bucket_name
 
+  sqs_queue_name = dependency.sqs.outputs.sqs_queue_name
+  sqs_queue_url = dependency.sqs.outputs.sqs_queue_url
   # Tags 統一來自 root.hcl
   tags = read_terragrunt_config(find_in_parent_folders("root.hcl")).locals.tags
 }

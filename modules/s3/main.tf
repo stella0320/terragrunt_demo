@@ -48,7 +48,7 @@ resource "aws_s3_bucket_policy" "deny_unless_vpce" {
           "s3:ListBucket",
           "s3:GetObject",
           "s3:PutObject",
-          "s3:DeleteObject"
+          "s3:DeleteObject",
         ],
         Resource = [
           "${aws_s3_bucket.this.arn}",
@@ -72,6 +72,9 @@ resource "aws_s3_bucket_policy" "deny_unless_vpce" {
         Condition = {
           StringNotEquals = {
             "aws:SourceVpce" = var.allowed_vpce_id
+          },
+          ArnNotEquals = {
+            "aws:PrincipalArn" = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/Ann"
           }
         }
       }

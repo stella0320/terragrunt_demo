@@ -16,7 +16,8 @@ resource "aws_iam_role" "this" {
   tags = var.tags
 }
 
-
+data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
 # -------------------------------------------------
 # IAM Policy: S3 access + basic logging
 # -------------------------------------------------
@@ -60,6 +61,12 @@ resource "aws_iam_role_policy" "this" {
           "ec2:UnassignPrivateIpAddresses"
         ]
         Resource = "*"
+      },{
+        Effect = "Allow",
+        Action = [
+          "sqs:SendMessage" 
+        ],
+        Resource = "arn:aws:sqs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${var.sqs_queue_name}"
       }
     ]
   })
@@ -92,6 +99,7 @@ resource "aws_lambda_function" "this" {
   environment {
     variables = {
       BUCKET_NAME = var.bucket_name
+      QUEUE_URL = var.sqs_queue_url
     }
   }
 

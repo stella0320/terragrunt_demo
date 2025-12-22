@@ -6,7 +6,7 @@ locals {
     Env     = "dev"
   }
 
-  
+  project_name = "terragrunt-demo"
 }
 
 

@@ -22,3 +22,11 @@ variable "subnet_ids" {
 variable "security_group_id" {
   description = "security group id"
 }
+
+variable "sqs_queue_name" {
+  description = "queue name"
+}
+
+variable "sqs_queue_url" {
+  description = "sqs queue name"
+}
