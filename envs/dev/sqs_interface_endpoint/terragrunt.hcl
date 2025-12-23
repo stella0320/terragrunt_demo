@@ -31,7 +31,7 @@ inputs = {
 
   vpc_id = dependency.vpc.outputs.vpc_id
 
-  subnet_ids = [dependency.vpc.outputs.private_subnet_ids[1]]
+  subnet_ids = dependency.vpc.outputs.private_subnet_ids
 
   security_group_id = dependency.vpc.outputs.sqs_sg_id
 
