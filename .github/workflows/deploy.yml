@@ -23,11 +23,11 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: vue-cdn-project
+        working-directory: vue_cdn/vue-cdn-project
         run: npm ci
 
       - name: Build site
-        working-directory: vue-cdn-project
+        working-directory: vue_cdn/vue-cdn-project
         run: npm run build
 
       - name: Configure AWS credentials
