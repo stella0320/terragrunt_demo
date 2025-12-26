@@ -1,0 +1,41 @@
+name: Deploy Vue site to S3
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: vue-cdn-project
+        run: npm ci
+
+      - name: Build site
+        working-directory: vue-cdn-project
+        run: npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::005988779241:role/github-actions-s3-deploy
+          aws-region: ap-northeast-1
+
+      - name: Upload to S3
+        run: |
+          aws s3 sync vue-cdn-project/dist/ s3://vue-cdn-demo-bucket/ --delete
