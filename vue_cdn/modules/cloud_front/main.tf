@@ -9,6 +9,8 @@ resource "aws_cloudfront_origin_access_control" "this" {
 
 resource "aws_cloudfront_distribution" "this" {
   enabled = true
+  default_root_object = "index.html"
+
   origin {
     domain_name = var.bucket_domain_name
     origin_id   = "origin-cf-${var.project_name}"
