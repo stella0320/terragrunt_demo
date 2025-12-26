@@ -3,7 +3,7 @@ name: Deploy Vue site to S3
 on:
   push:
     branches:
-      - main
+      - vue_cdn
 
 permissions:
   id-token: write
