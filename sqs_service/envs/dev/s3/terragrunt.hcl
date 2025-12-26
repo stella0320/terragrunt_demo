@@ -28,7 +28,7 @@ dependency "s3_gateway_endpont" {
 # Inputs
 # -------------------------------------------------
 inputs = {
-  bucket_name = "terragrunt-s3-demo"
+  bucket_name = "sqs-service-demo"
 
   enable_versioning = false
 
@@ -40,7 +40,7 @@ inputs = {
 
   allowed_vpce_id = dependency.s3_gateway_endpont.outputs.vpc_endpint_id
   tags = {
-    Project = "terragrunt-s3-demo"
+    Project = "sqs-service-demo"
     Env     = "dev"
   }
 }

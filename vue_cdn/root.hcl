@@ -2,11 +2,11 @@ locals {
   region = "ap-northeast-1"
 
   tags = {
-    Project = "terragrunt-s3-demo"
+    Project = "vue-cdn-demo"
     Env     = "dev"
   }
 
-  project_name = "terragrunt-demo"
+  project_name = "vue-cdn-demo"
 }
 
 
@@ -17,11 +17,11 @@ locals {
 remote_state {
   backend = "s3"
   config = {
-    bucket         = "terragrunt-demo-state-dev"
+    bucket         = "sqs-service-state-dev"
     key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = local.region
     encrypt        = true
-    dynamodb_table = "terragrunt-demo-lock-dev"
+    dynamodb_table = "sqs-service-lock-dev"
   }
 }
 

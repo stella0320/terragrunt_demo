@@ -19,7 +19,8 @@ dependency "vpc" {
     vpc_id                   = "mock-vpc"
     private_route_table_ids  = ["mock-rtb"]
     lambda_sg_id = "lambda-sg-id"
-    subnet_ids = ["10.0.1.0/24", "10.0.2.0/24"]
+    private_subnet_ids = ["10.0.1.0/24", "10.0.2.0/24"]
+    sqs_sg_id = "sqs-sg-id"
   }
 
   mock_outputs_allowed_terraform_commands = ["init", "plan"]

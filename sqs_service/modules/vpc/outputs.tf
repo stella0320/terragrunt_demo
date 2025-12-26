@@ -20,5 +20,5 @@ output "lambda_sg_id" {
 
 output "sqs_sg_id" {
   description = "sqs security group id"
-  value = "${aws_security_group.sqs_endpoint.id}"
+  value = aws_security_group.sqs_endpoint.id
 }
