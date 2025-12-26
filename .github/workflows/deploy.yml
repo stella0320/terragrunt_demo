@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - vue_cdn
-
+  workflow_dispatch:
 permissions:
   id-token: write
   contents: read
