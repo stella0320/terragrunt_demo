@@ -10,3 +10,7 @@ variable "tags" {
 variable "bucket_domain_name" {
   description = "s3 domain name"
 }
+
+variable "api_gateway_domain_name" {
+  description = "domain name for api gateway"
+}

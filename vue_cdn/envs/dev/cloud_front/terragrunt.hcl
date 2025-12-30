@@ -21,10 +21,22 @@ dependency "s3" {
   mock_outputs_allowed_terraform_commands = ["init", "plan"]
 }
 
+dependency "api_gateway" {
+  config_path = "../api_gateway"
+  mock_outputs = {
+    invoke_url = "invoke_url"
+  } 
+  mock_outputs_allowed_terraform_commands = ["init", "plan"]
+}
+
 
 inputs = {
-  
   project_name = local.root.locals.project_name
   tags = local.root.locals.tags
   bucket_domain_name = dependency.s3.outputs.bucket_regional_domain_name
+  api_gateway_domain_name = replace(
+    dependency.api_gateway.outputs.invoke_url,
+    "https://",
+    ""
+  )
 }
