@@ -32,7 +32,7 @@ async function fetchTodos() {
   try {
     const url = new URL(apiUrl(), window.location.origin)
     url.searchParams.set('userId', userId.value)
-
+    console.log('Fetching todos from', url.toString())
     const res = await fetch(url.toString(), {
       method: 'GET',
       headers: { Accept: 'application/json' },
