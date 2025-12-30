@@ -5,12 +5,12 @@ from routes.delete_todo import delete_todo
 
 def handler(event, context):
     
-    
+    print("Received event:", event)
     headers = event.get("headers") or {}
     cdn_header = headers.get("x-from-cdn")
     if cdn_header != "jlkdjjfpsjap;odj":
         return {
-            "statusCode": 403,
+            "statusCode": 405,
             "body": "Forbidden"
         }
     # HTTP API v2 正確取法
@@ -30,6 +30,6 @@ def handler(event, context):
         return delete_todo(event)
 
     return {
-        "statusCode": 404,
+        "statusCode": 402,
         "body": "Not Found"
     }

@@ -34,7 +34,3 @@ variable "tags" {
   type    = map(string)
   default = {}
 }
-
-variable "cloudfront_distribution_arn" {
-  
-}

@@ -25,6 +25,7 @@ dependency "api_gateway" {
   config_path = "../api_gateway"
   mock_outputs = {
     invoke_url = "invoke_url"
+    api_gateway_stage_name = "api_gateway_stage_name"
   } 
   mock_outputs_allowed_terraform_commands = ["init", "plan"]
 }
@@ -39,4 +40,5 @@ inputs = {
     "https://",
     ""
   )
+  api_gateway_stage_name = dependency.api_gateway.outputs.api_gateway_stage_name
 }

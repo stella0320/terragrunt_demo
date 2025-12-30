@@ -14,3 +14,7 @@ variable "bucket_domain_name" {
 variable "api_gateway_domain_name" {
   description = "domain name for api gateway"
 }
+
+variable "api_gateway_stage_name" {
+  description = "stage name"
+}

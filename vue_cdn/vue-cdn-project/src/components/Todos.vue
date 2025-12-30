@@ -30,7 +30,7 @@ async function fetchTodos() {
   errorMessage.value = null
 
   try {
-    const url = new URL(apiUrl())
+    const url = new URL(apiUrl(), window.location.origin)
     url.searchParams.set('userId', userId.value)
 
     const res = await fetch(url.toString(), {

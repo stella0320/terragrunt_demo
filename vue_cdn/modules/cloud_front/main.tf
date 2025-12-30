@@ -43,6 +43,8 @@ resource "aws_cloudfront_distribution" "this" {
     cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id # AWS managed: CachingOptimized
   }
 
+  
+
   # --- Origin 2: API Gateway ---
   origin {
     domain_name = var.api_gateway_domain_name
@@ -62,7 +64,7 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   ordered_cache_behavior {
-    path_pattern     = "/api/*"
+    path_pattern     = "/${var.api_gateway_stage_name}/api/*"
     target_origin_id = "origin-api-${var.project_name}"
 
     # API 通常允許所有動態方法
@@ -79,6 +81,21 @@ resource "aws_cloudfront_distribution" "this" {
     # 使用 AWS Managed Policy: AllViewerExceptHostHeader (推薦用於 API Gateway)
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.all_viewer_except_host.id
   }
+
+    custom_error_response {
+    error_code            = 403
+    response_code         = 200
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 0
+  }
+
+  custom_error_response {
+    error_code            = 404
+    response_code         = 200
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 0
+  }
+
   restrictions {
     geo_restriction {
       restriction_type = "none"

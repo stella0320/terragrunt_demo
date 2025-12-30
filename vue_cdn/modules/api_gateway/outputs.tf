@@ -7,3 +7,7 @@ output "api_gateway_id" {
 output "api_gateway_arn" {
   value = aws_apigatewayv2_api.this.arn
 }
+
+output "api_gateway_stage_name" {
+  value = aws_apigatewayv2_stage.this.name
+}
