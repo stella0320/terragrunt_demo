@@ -28,6 +28,6 @@ dependency "s3" {
 inputs = {
   github_org = "stella0320"
   github_repo = "terragrunt_demo"
-  github_branch = "vue_cdn"
+  github_branch = "api_gateway"
   s3_bucket_name = dependency.s3.outputs.bucket_id
 } 
