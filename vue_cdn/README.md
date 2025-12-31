@@ -2,6 +2,8 @@
 
 這個資料夾是一個示範「前端透過 CDN 呼叫 S3 index.html」、「前端透過 CDN 呼叫 API Gateway，再串接 Lambda + DynamoDB」的完整專案骨架，包含基礎的 IaC（Terragrunt/Terraform）與前端 Vue 範例。
 
+![架構圖](./images/架構圖.png)
+
 ## 使用到的服務（AWS）
 - **Amazon S3**：存放前端打包後的靜態網站檔案，作為 CloudFront 的靜態內容 origin。
 - **Amazon CloudFront**：CDN 入口；將靜態資源快取到邊緣節點，並依 path behavior（例如 `/api/*`）轉發到不同 origin。
