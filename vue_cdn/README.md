@@ -46,7 +46,7 @@ cd vue-cdn-project
 npm install
 npm run dev
 ```
-## 本機 IaC
+## 本機開發 (AWS terragrunt 部屬 IaC)
 ```bash
 terragrunt init
 terragrunt plan
