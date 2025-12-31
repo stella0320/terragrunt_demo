@@ -1,4 +1,4 @@
-# vue_cdn 專案介紹（大綱）
+# vue_cdn 專案介紹
 
 這個資料夾是一個示範「前端透過 CDN 呼叫 S3 index.html」、「前端透過 CDN 呼叫 API Gateway，再串接 Lambda + DynamoDB」的完整專案骨架，包含基礎的 IaC（Terragrunt/Terraform）與前端 Vue 範例。
 
