@@ -27,6 +27,7 @@ terragrunt_demo/
 ## 範例一：sqs_service
 
 ### 架構說明
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/5f26c37a-7a13-4ac6-8083-1d68e665ea0c" />
 
 示範 Lambda 部署在 **私有子網路（Private Subnet）** 中，透過 VPC Endpoint 私下存取 AWS 託管服務，完全不需要走公開網路。
 
